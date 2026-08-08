@@ -30,10 +30,15 @@ print("scale: ", scale)
 print("HEIGHT2: ", NEW_HEIGHT)
 print("WIDTH2: ", NEW_WIDTH)
 
-sizeTemplate = np.zeros((244, 244, 3), dtype=np.uint8)
+zerosTemplate = np.zeros((244, 244, 3), dtype=np.uint8)
 
-resized = halfScaled | sizeTemplate # np.bitwise_or(halfScaled, sizeTemplate)
+topOffset = (TARGET_IMAGE_SIZE - NEW_HEIGHT) // 2
+leftOffset = (TARGET_IMAGE_SIZE - NEW_WIDTH) // 2
+
+zerosTemplate[topOffset:(topOffset + NEW_HEIGHT), leftOffset:(leftOffset+NEW_WIDTH)] = halfScaled 
 print(halfScaled.dtype)
+
+resized = zerosTemplate
 
 cv2.imshow("Test Preprocess", resized)
 
