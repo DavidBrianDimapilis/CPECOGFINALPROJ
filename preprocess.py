@@ -1,0 +1,41 @@
+import cv2
+import numpy as np
+
+# image path
+path = "C:\addPath"
+path = "/home/jp/college/CPECOG1_ComputerVision/project/test.png"
+
+image = cv2.imread(path)
+cv2.imshow("Input", image)
+
+TARGET_IMAGE_SIZE = 244 
+HEIGHT = image.shape[0]
+WIDTH = image.shape[1]
+
+
+# og*0.5 = 244
+# 0.5 = 244/og
+scale = 244/max(HEIGHT, WIDTH)
+
+NEW_HEIGHT = int(HEIGHT * scale)
+NEW_WIDTH = int(WIDTH * scale)
+
+halfScaled = cv2.resize(image, (NEW_WIDTH, NEW_HEIGHT))
+
+
+print("HEIGHT: ", HEIGHT)
+print("WIDTH: ", WIDTH)
+print("scale: ", scale)
+
+print("HEIGHT2: ", NEW_HEIGHT)
+print("WIDTH2: ", NEW_WIDTH)
+
+sizeTemplate = np.zeros((244, 244, 3), dtype=np.uint8)
+
+resized = halfScaled | sizeTemplate # np.bitwise_or(halfScaled, sizeTemplate)
+print(halfScaled.dtype)
+
+cv2.imshow("Test Preprocess", resized)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
