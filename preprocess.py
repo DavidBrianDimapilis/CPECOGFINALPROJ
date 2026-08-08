@@ -35,7 +35,7 @@ def resizeForCnn(image, size):
 
 # image path
 path = "C:\addPath"
-path = "/home/jp/college/CPECOG1_ComputerVision/project/test.png"
+#path = "/home/jp/college/CPECOG1_ComputerVision/project/test.png"
 
 image = cv2.imread(path)
 cv2.imshow("Input", image)
