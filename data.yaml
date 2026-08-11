@@ -1,0 +1,13 @@
+train: train/images
+val: valid/images
+test: test/images
+
+nc: 4
+names: ['rider_full_face', 'rider_half_face', 'rider_helmet_invalid', 'rider_no_helmet']
+
+roboflow:
+  workspace: mapua-university
+  project: motorcycle-helmet-detection-dataset-ph
+  version: 2
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/mapua-university/motorcycle-helmet-detection-dataset-ph/dataset/2
