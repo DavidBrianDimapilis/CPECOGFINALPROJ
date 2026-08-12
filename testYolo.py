@@ -1,6 +1,6 @@
 from ultralytics import YOLO
 
-MODEL_PATH = "models/02_realRun/best.pt"   # CHANGE 02_realRun to other folder names
+MODEL_PATH = "models/03_90_epochs/best.pt"   # CHANGE 02_realRun to other folder names
 DATA_YAML = "data.yaml"          
 
 model = YOLO(MODEL_PATH)
