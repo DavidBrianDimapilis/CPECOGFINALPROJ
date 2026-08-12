@@ -5,10 +5,11 @@ model = YOLO("yolo26n.pt")
 # NOTE: Please rename name to 03_xxxxx, 04_xxxxxxx
 results = model.train(
 	data = "data.yaml",
-	epochs = 100,
+	epochs = 90,
 	imgsz = 640,
 	batch = 16,
-	name = "02_realRun"
+	patience = 10,
+	name = "03_90_epochs"
 
 		)
 
