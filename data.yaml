@@ -1,4 +1,4 @@
-train: train/preproc/images
+train: train/preproc
 val: valid/images
 test: test/images
 

@@ -5,7 +5,7 @@ from ultralytics import YOLO
 
 # ---------------- CONFIG ----------------
 # Pointing directly to your newly trained 2-class model
-MODEL_PATH = "runs/detect/04_150_epochs_15_patience/weights/best.pt"   
+MODEL_PATH = "runs/detect/m4_median-6/weights/best.pt"   
 VIDEO_SOURCE = "C:/Users/David D/Documents/GitHub/CPECOGFINALPROJ/test/videos/videotest.mp4"      
 SAVE_DIR = "captures"
 # -----------------------------------------

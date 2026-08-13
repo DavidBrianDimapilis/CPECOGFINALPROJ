@@ -1,6 +1,6 @@
 from ultralytics import YOLO
 
-MODEL_PATH = "runs/detect/m4_median-4/weights/best.pt"
+MODEL_PATH = "runs/detect/m4_median-6/weights/best.pt"
 DATA_YAML = "data.yaml"
 
 
