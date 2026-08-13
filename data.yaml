@@ -2,8 +2,8 @@ train: train/images
 val: valid/images
 test: test/images
 
-nc: 4
-names: ['rider_full_face', 'rider_half_face', 'rider_helmet_invalid', 'rider_no_helmet']
+nc: 2
+names: ['Helmet', 'No_Helmet']
 
 roboflow:
   workspace: mapua-university
