@@ -32,9 +32,9 @@ if _name_ == '_main_':
     
     results = model.train(
         data="data.yaml", 
-        epochs=150,
+        epochs=50,
         imgsz=640,
         batch=-1,
-        patience=15,
-        name="04_150_epochs_15_patience"
+        patience=12,
+        name="06_Median_50epochs_12patience"
     )
