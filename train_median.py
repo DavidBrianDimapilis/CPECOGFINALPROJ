@@ -55,9 +55,9 @@ if __name__ == '__main__':
     
     results = model.train(
         data="data.yaml", 
-        epochs=100,
+        epochs=50,
         imgsz=640,
         batch=-1,
-        patience=5,
+        patience=12,
         name="m4_median"
     )

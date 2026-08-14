@@ -4,14 +4,20 @@ import os
 import shutil
 from ultralytics import YOLO
 
-def preprocess_dataset():
-    INPUT_FOLDER = "train/images"
-    OUTPUT_FOLDER = "train/preproc_bilateral/images"
-
-    LABEL_FOLDER = "train/labels"
-    OUTPUT_LABEL_FOLDER = "train/preproc_bilateral/labels"
+def preprocess_split(split_name):
+    """Applies bilateral filter to images and copies labels for a given split."""
     
-    print("Starting bilateral preprocessing...")
+    INPUT_FOLDER = f"{split_name}/images"
+    OUTPUT_FOLDER = f"{split_name}/preproc_bilateral/images"
+
+    LABEL_FOLDER = f"{split_name}/labels"
+    OUTPUT_LABEL_FOLDER = f"{split_name}/preproc_bilateral/labels"
+    
+    if not os.path.exists(INPUT_FOLDER):
+        print(f"Skipping {split_name}: Folder not found ({INPUT_FOLDER})")
+        return
+
+    print(f"Starting bilateral preprocessing for {split_name}...")
     
     os.makedirs(OUTPUT_FOLDER, exist_ok=True)
     os.makedirs(OUTPUT_LABEL_FOLDER, exist_ok=True)
@@ -30,11 +36,9 @@ def preprocess_dataset():
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         blurred = cv2.bilateralFilter(gray, 9, 75, 75)
         
-        # Save processed image
         outputPath = os.path.join(OUTPUT_FOLDER, filename)
         cv2.imwrite(outputPath, blurred)
 
-        # Copy matching label
         label_filename = os.path.splitext(filename)[0] + ".txt"
         labelPath = os.path.join(LABEL_FOLDER, label_filename)
         outputLabelPath = os.path.join(OUTPUT_LABEL_FOLDER, label_filename)
@@ -42,22 +46,23 @@ def preprocess_dataset():
         if os.path.exists(labelPath):
             shutil.copy2(labelPath, outputLabelPath)
         else:
-            print("WARNING: Label not found:", label_filename)
+            print(f"WARNING: Label not found for {filename}")
 
-    print("Preprocessed inside:", OUTPUT_FOLDER)
-    print("Labels copied inside:", OUTPUT_LABEL_FOLDER)
+    print(f"Finished {split_name}! Images in {OUTPUT_FOLDER}, Labels in {OUTPUT_LABEL_FOLDER}\n")
 
 
 if __name__ == '__main__':
-    preprocess_dataset()
+   
+    for split in ["train", "valid", "test"]:
+        preprocess_split(split)
     
     model = YOLO("yolo26n.pt") 
     
     results = model.train(
-        data="data_bilateral.yaml", 
-        epochs=100,
+        data="data.yaml", 
+        epochs=50,
         imgsz=640,
         batch=-1,
-        patience=5,
+        patience=12,
         name="m4_bilateral"
     )

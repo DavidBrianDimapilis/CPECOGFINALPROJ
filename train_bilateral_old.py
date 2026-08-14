@@ -36,5 +36,5 @@ if _name_ == '_main_':
         imgsz=640,
         batch=-1,
         patience=5,
-        name="04_150_epochs_15_patience"
+        name="m4_bilateral"
     )
