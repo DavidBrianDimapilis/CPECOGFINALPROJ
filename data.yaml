@@ -1,6 +1,10 @@
-train: train/preproc/images
-val: valid/preproc/images
-test: test/preproc/images
+train: train/images
+val: valid/images
+test: test/images
+
+#train: train/preproc/images
+#val: valid/preproc/images
+#test: test/preproc/images
 
 nc: 2
 names: ['Helmet', 'No_Helmet']
